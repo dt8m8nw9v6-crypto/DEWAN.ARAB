@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ديوان المعلّقات | ذاكرة العرب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============ المتغيرات العامة ============ */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#1B3B2B;
+  --green-2:#24523B;
+  --gold:#C5A059;
+  --gold-2:#E2BA6E;
+  --bg:#F4F1EA;
+  --bg-2:#EBE6DD;
+  --card:#FFFDF7;
+  --text:#23201A;
+  --muted:#6B6355;
+  --border:rgba(197,160,89,.38);
+  --shadow:0 12px 34px rgba(27,59,43,.10);
+  --radius:18px;
+  --f-ui:'Cairo',system-ui,sans-serif;
+  --f-poem:'Amiri',serif;
+  --f-sign:'Aref Ruqaa',serif;
+}
+body.dark{
+  --bg:#0E1A14;
+  --bg-2:#12241B;
+  --card:#152A20;
+  --text:#F3EADA;
+  --muted:#B5AC97;
+  --border:rgba(197,160,89,.28);
+  --shadow:0 12px 34px rgba(0,0,0,.55);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--f-ui);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(197,160,89,.10), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(27,59,43,.08), transparent 45%),
+    var(--bg);
+  color:var(--text);
+  line-height:1.9;
+  transition:background .45s ease,color .45s ease;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+body.dark{
+  background:
+    radial-gradient(circle at 100% 0%, rgba(197,160,89,.13), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(27,59,43,.55), transparent 45%),
+    var(--bg);
+}
+img{max-width:100%}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.hidden{display:none !important}
+
+/* ============ الترويسة ============ */
+.site-header{
+  position:sticky;top:0;z-index:80;
+  background:linear-gradient(180deg,#16301F,#1B3B2B);
+  border-bottom:2px solid var(--gold);
+  box-shadow:0 6px 24px rgba(0,0,0,.25);
+}
+.header-inner{
+  max-width:1200px;margin:0 auto;padding:.7rem 1.1rem;
+  display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:space-between;
+}
+.brand{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+.brand h1{
+  font-family:var(--f-sign);
+  font-size:1.45rem;color:var(--gold-2);letter-spacing:.5px;
+  line-height:1.3;white-space:nowrap;
+}
+.brand .sub{font-size:.72rem;color:rgba(244,241,234,.62);letter-spacing:2px}
+.signature{
+  font-family:var(--f-sign);
+  color:var(--gold-2);
+  border:1px solid var(--gold);
+  border-radius:999px;
+  padding:.18rem 1rem;
+  font-size:.9rem;
+  background:rgba(197,160,89,.10);
+  white-space:nowrap;
+  box-shadow:inset 0 0 12px rgba(197,160,89,.12);
+}
+.nav-links{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}
+.nav-btn{
+  font-size:.85rem;font-weight:600;color:#EFE7D5;
+  padding:.42rem .85rem;border-radius:999px;
+  border:1px solid transparent;transition:.25s;
+}
+.nav-btn:hover{background:rgba(197,160,89,.18);border-color:var(--gold);color:#fff}
+.theme-btn{
+  width:42px;height:42px;border-radius:50%;
+  border:1px solid var(--gold);
+  background:rgba(197,160,89,.12);
+  font-size:1.15rem;display:grid;place-items:center;
+  transition:.3s;
+}
+.theme-btn:hover{transform:rotate(-20deg) scale(1.08);background:rgba(197,160,89,.28)}
+
+/* ============ الحاوية ============ */
+main{max-width:1200px;margin:0 auto;padding:0 1.1rem 3rem}
+
+/* ============ الواجهة الرئيسية ============ */
+.hero{text-align:center;padding:3.2rem 1rem 2.6rem;position:relative}
+.ornament{
+  font-size:1.6rem;color:var(--gold);letter-spacing:.6rem;opacity:.75;margin-bottom:1rem;
+}
+.hero h2{
+  font-family:var(--f-sign);
+  font-size:clamp(1.7rem,4.6vw,3.1rem);
+  color:var(--green);
+  line-height:1.55;
+  margin-bottom:1rem;
+  text-shadow:0 2px 0 rgba(197,160,89,.18);
+}
+body.dark .hero h2{color:var(--gold-2)}
+.hero p{
+  max-width:760px;margin:0 auto;
+  color:var(--muted);font-size:1.02rem;line-height:2.1;
+}
+.hero .divider{
+  width:120px;height:3px;margin:1.6rem auto 0;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  border-radius:99px;
+}
+
+/* ============ العناوين ============ */
+.section{padding:2.6rem 0}
+.section-title{
+  text-align:center;font-family:var(--f-sign);
+  font-size:clamp(1.35rem,3.2vw,2rem);
+  color:var(--green);margin-bottom:.35rem;
+}
+body.dark .section-title{color:var(--gold-2)}
+.section-sub{text-align:center;color:var(--muted);font-size:.9rem;margin-bottom:2rem}
+
+/* ============ شبكة الشعراء ============ */
+.poets-grid{
+  display:grid;gap:1.1rem;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+}
+.poet-card{
+  position:relative;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.4rem 1.2rem 1.2rem;
+  text-align:center;
+  box-shadow:var(--shadow);
+  transition:transform .3s ease,box-shadow .3s ease,border-color .3s;
+  overflow:hidden;
+  cursor:pointer;
+}
+.poet-card::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(197,160,89,.12),transparent 55%);
+  opacity:0;transition:.35s;
+}
+.poet-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 18px 40px rgba(27,59,43,.18)}
+.poet-card:hover::before{opacity:1}
+.poet-card .emblem{
+  width:58px;height:58px;margin:0 auto .7rem;
+  border-radius:50%;
+  display:grid;place-items:center;
+  font-size:1.5rem;
+  color:var(--gold-2);
+  background:radial-gradient(circle at 30% 25%,#2C5A40,#16301F);
+  border:2px solid var(--gold);
+  box-shadow:0 6px 16px rgba(27,59,43,.28);
+}
+.poet-card h3{
+  font-family:var(--f-sign);font-size:1.25rem;color:var(--green);margin-bottom:.2rem;
+}
+body.dark .poet-card h3{color:var(--gold-2)}
+.poet-card .laqab{font-size:.8rem;color:var(--gold);font-weight:600;margin-bottom:.35rem}
+.poet-card .tribe{font-size:.78rem;color:var(--muted)}
+.poet-card .fav-star{
+  position:absolute;top:.7rem;left:.7rem;font-size:1rem;opacity:.35;transition:.25s;
+}
+.poet-card.is-fav .fav-star{opacity:1;transform:scale(1.15);filter:drop-shadow(0 0 6px rgba(226,186,110,.9))}
+
+/* ============ البطاقات العامة ============ */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.5rem 1.4rem;
+  box-shadow:var(--shadow);
+  margin-bottom:1.1rem;
+}
+.card-title{
+  font-family:var(--f-sign);
+  font-size:1.2rem;color:var(--green);
+  margin-bottom:.7rem;padding-bottom:.5rem;
+  border-bottom:1px dashed var(--border);
+}
+body.dark .card-title{color:var(--gold-2)}
+.card p{color:var(--text);opacity:.92;font-size:.96rem;line-height:2.15;text-align:justify}
+
+/* ============ قسم هل تعلم ============ */
+.fact-box{
+  max-width:820px;margin:0 auto;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:2rem 1.6rem 1.6rem;
+  text-align:center;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.fact-box::after{
+  content:"";position:absolute;inset:8px;border:1px solid rgba(197,160,89,.22);
+  border-radius:16px;pointer-events:none;
+}
+.fact-icon{font-size:2rem;color:var(--gold);margin-bottom:.6rem}
+.fact-text{
+  font-family:var(--f-poem);
+  font-size:clamp(1.05rem,2.4vw,1.35rem);
+  line-height:2.2;color:var(--text);
+  min-height:110px;display:flex;align-items:center;justify-content:center;
+  animation:fadeIn .45s ease;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.fact-footer{
+  display:flex;align-items:center;justify-content:center;gap:1rem;
+  margin-top:1.2rem;flex-wrap:wrap;
+}
+.counter{
+  font-weight:700;color:var(--gold);
+  font-size:.9rem;letter-spacing:1px;
+  border:1px solid var(--border);border-radius:999px;padding:.2rem .9rem;
+  direction:ltr;
+}
+
+/* ============ الأزرار ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.55rem 1.15rem;border-radius:999px;
+  font-size:.86rem;font-weight:700;
+  background:linear-gradient(180deg,var(--gold-2),var(--gold));
+  color:#1B2A1F;
+  box-shadow:0 6px 16px rgba(197,160,89,.32);
+  transition:.25s;border:1px solid rgba(255,255,255,.25);
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(197,160,89,.45)}
+.btn:active{transform:translateY(0)}
+.btn.ghost{
+  background:transparent;color:var(--gold);border:1px solid var(--gold);
+  box-shadow:none;
+}
+body.dark .btn.ghost{color:var(--gold-2);border-color:var(--gold-2)}
+.btn.ghost:hover{background:rgba(197,160,89,.12)}
+.btn.small{padding:.35rem .8rem;font-size:.78rem}
+
+/* ============ صفحة الشاعر ============ */
+.poet-wrap{animation:fadeIn .4s ease}
+.poet-head{
+  text-align:center;padding:2rem 1rem 1.4rem;
+  border-radius:22px;
+  background:linear-gradient(160deg,rgba(27,59,43,.96),rgba(27,59,43,.86));
+  border:1px solid var(--gold);
+  color:#F4F1EA;
+  box-shadow:var(--shadow);
+  margin-bottom:1.2rem;
+  position:relative;overflow:hidden;
+}
+.poet-head::before{
+  content:"";position:absolute;inset:10px;border:1px solid rgba(197,160,89,.35);
+  border-radius:16px;pointer-events:none;
+}
+.poet-head h1{
+  font-family:var(--f-sign);
+  font-size:clamp(1.7rem,4.5vw,2.7rem);
+  color:var(--gold-2);margin-bottom:.3rem;
+}
+.poet-head .poet-full{font-size:.92rem;color:rgba(244,241,234,.75);margin-bottom:.9rem}
+.poet-meta{
+  display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;font-size:.8rem;
+}
+.poet-meta span{
+  background:rgba(197,160,89,.15);
+  border:1px solid rgba(197,160,89,.45);
+  border-radius:999px;padding:.22rem .85rem;color:#F0E7D4;
+}
+
+/* شريط الأدوات */
+.toolbar{
+  display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:center;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:.7rem .8rem;
+  margin-bottom:1.1rem;
+  box-shadow:var(--shadow);
+  position:sticky;top:74px;z-index:40;
+}
+.tool-btn{
+  display:inline-flex;align-items:center;gap:.35rem;
+  padding:.42rem .8rem;border-radius:10px;
+  font-size:.8rem;font-weight:600;
+  border:1px solid var(--border);
+  background:var(--bg-2);
+  color:var(--text);
+  transition:.2s;
+}
+.tool-btn:hover{background:var(--gold);color:#1B2A1F;border-color:var(--gold)}
+.tool-btn.active{background:var(--gold);color:#1B2A1F;border-color:var(--gold)}
+.tool-sep{width:1px;height:24px;background:var(--border);margin:0 .2rem}
+
+/* الأبيات */
+.verses{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.6rem 1.2rem;
+  box-shadow:var(--shadow);
+  font-size:26px;
+  transition:font-size .25s ease;
+}
+.verse{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.6rem 1.2rem;
+  padding:.75rem .3rem;
+  border-bottom:1px dashed rgba(197,160,89,.22);
+  font-family:var(--f-poem);
+  line-height:1.95;
+  position:relative;
+}
+.verse:last-child{border-bottom:none}
+.verse .num{
+  position:absolute;top:.7rem;right:-.1rem;
+  font-family:var(--f-ui);font-size:.55em;
+  color:var(--gold);opacity:.75;font-weight:700;
+}
+.verse .sadr,.verse .ajz{padding-right:1.4rem}
+.verse .ajz{color:var(--text);opacity:.94}
+@media(max-width:640px){
+  .verse{grid-template-columns:1fr;gap:.15rem;text-align:center}
+  .verse .sadr,.verse .ajz{padding-right:0}
+  .verse .num{right:auto;left:0;top:.4rem;font-size:.5em}
+}
+.vocab{
+  color:var(--gold);
+  font-weight:700;
+  cursor:pointer;
+  border-bottom:1px dotted var(--gold);
+  transition:.2s;
+  padding:0 .08em;
+  border-radius:3px;
+}
+.vocab:hover{background:rgba(197,160,89,.20);color:var(--gold-2)}
+
+/* تلميح المفردات */
+#vocabTip{
+  position:fixed;z-index:999;
+  max-width:300px;
+  background:linear-gradient(160deg,#1B3B2B,#12291C);
+  color:#F4F1EA;
+  border:1px solid var(--gold);
+  border-radius:12px;
+  padding:.6rem .9rem;
+  font-family:var(--f-ui);
+  font-size:.83rem;line-height:1.85;
+  box-shadow:0 14px 34px rgba(0,0,0,.4);
+  opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:.2s;pointer-events:none;
+  direction:rtl;
+}
+#vocabTip.show{opacity:1;visibility:visible;transform:translateY(0)}
+#vocabTip::after{
+  content:"";position:absolute;bottom:-7px;right:22px;
+  width:12px;height:12px;background:#12291C;
+  border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);
+  transform:rotate(45deg);
+}
+
+/* التنقل بين الشعراء */
+.poet-nav{
+  display:flex;justify-content:space-between;gap:.8rem;margin-top:1.4rem;flex-wrap:wrap;
+}
+
+/* ============ الاختبار ============ */
+.quiz-tabs{
+  display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.4rem;
+}
+.tab{
+  padding:.5rem 1.15rem;border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--card);
+  font-size:.85rem;font-weight:700;color:var(--muted);
+  transition:.25s;
+}
+.tab:hover{border-color:var(--gold);color:var(--gold)}
+.tab.active{
+  background:linear-gradient(180deg,var(--gold-2),var(--gold));
+  color:#1B2A1F;border-color:var(--gold);
+  box-shadow:0 6px 16px rgba(197,160,89,.35);
+}
+.q-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:1.2rem;
+  margin-bottom:1rem;
+  box-shadow:var(--shadow);
+}
+.q-text{
+  font-weight:700;font-size:.98rem;margin-bottom:.9rem;
+  display:flex;gap:.6rem;align-items:flex-start;
+}
+.q-index{
+  flex:0 0 auto;
+  width:26px;height:26px;border-radius:50%;
+  background:var(--green);color:var(--gold-2);
+  display:grid;place-items:center;font-size:.75rem;
+  border:1px solid var(--gold);
+}
+body.dark .q-index{background:var(--gold);color:#12291C}
+.options{display:grid;gap:.55rem}
+.opt{
+  text-align:right;padding:.6rem .9rem;
+  border-radius:12px;border:1px solid var(--border);
+  background:var(--bg-2);
+  font-size:.88rem;transition:.2s;
+  display:flex;gap:.6rem;align-items:center;
+}
+.opt:hover:not(.locked){border-color:var(--gold);background:rgba(197,160,89,.12)}
+.opt .marker{
+  width:20px;height:20px;border-radius:50%;
+  border:1px solid var(--gold);flex:0 0 auto;
+  display:grid;place-items:center;font-size:.65rem;color:var(--gold);
+}
+.opt.correct{background:rgba(46,160,90,.16);border-color:#2EA05A}
+.opt.correct .marker{background:#2EA05A;color:#fff;border-color:#2EA05A}
+.opt.wrong{background:rgba(200,60,60,.14);border-color:#C83C3C}
+.opt.wrong .marker{background:#C83C3C;color:#fff;border-color:#C83C3C}
+.opt.locked{cursor:default}
+.explain{
+  margin-top:.8rem;padding:.7rem .9rem;
+  border-radius:10px;
+  background:rgba(197,160,89,.12);
+  border-right:3px solid var(--gold);
+  font-size:.83rem;line-height:1.9;color:var(--muted);
+  animation:fadeIn .3s ease;
+}
+.score-bar{
+  text-align:center;margin-top:1.4rem;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:1.3rem;
+  box-shadow:var(--shadow);
+}
+.score-num{
+  font-family:var(--f-sign);font-size:2rem;color:var(--gold);
+}
+.score-title{
+  font-family:var(--f-sign);font-size:1.3rem;color:var(--green);margin-top:.3rem;
+}
+body.dark .score-title{color:var(--gold-2)}
+
+/* ============ التذييل ============ */
+footer{
+  margin-top:2rem;padding:2rem 1rem 2.4rem;text-align:center;
+  background:linear-gradient(180deg,transparent,rgba(27,59,43,.10));
+  border-top:1px solid var(--border);
+}
+footer .signature{font-size:1.05rem;padding:.4rem 1.5rem;display:inline-block}
+footer .note{font-size:.75rem;color:var(--muted);margin-top:.9rem}
+
+/* ============ التنبيه (Toast) ============ */
+#toast{
+  position:fixed;bottom:26px;left:50%;transform:translate(-50%,20px);
+  background:linear-gradient(160deg,#1B3B2B,#12291C);
+  color:var(--gold-2);border:1px solid var(--gold);
+  padding:.65rem 1.4rem;border-radius:999px;
+  font-size:.85rem;font-weight:600;
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+  opacity:0;visibility:hidden;transition:.3s;z-index:1000;
+  pointer-events:none;
+}
+#toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+/* ============ الطباعة ============ */
+@media print{
+  .site-header,footer,.toolbar,.poet-nav,.back-row,#vocabTip,#toast,
+  #view-home,.hero,.ornament{display:none !important}
+  body{background:#fff !important;color:#000 !important}
+  .verses,.card,.poet-head{
+    box-shadow:none !important;border:1px solid #999 !important;
+    background:#fff !important;color:#000 !important;
+  }
+  .poet-head h1{color:#1B3B2B !important}
+  .poet-head .poet-full,.poet-meta span{color:#333 !important}
+  .verse{page-break-inside:avoid;border-bottom:1px solid #ccc !important}
+  .vocab{color:#8a6d2f !important;border-bottom:none !important}
+  main{max-width:100%}
+}
+
+/* ============ تجاوب ============ */
+@media(max-width:760px){
+  .header-inner{justify-content:center;text-align:center}
+  .brand{align-items:center;width:100%}
+  .brand h1{font-size:1.2rem;white-space:normal}
+  .signature{font-size:.78rem;order:3}
+  .nav-links{order:4;justify-content:center;width:100%}
+  .toolbar{position:static}
+  .poet-meta{font-size:.72rem}
+  .verses{font-size:20px;padding:1.1rem .7rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= الترويسة ================= -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <h1>ديوان المعلّقات | ذاكرة العرب</h1>
+      <span class="sub">مُعلّقات الجاهلية السبعة</span>
+    </div>
+    <div class="signature">صنع بواسطة الطالب : علي امحمد علي الهمالي</div>
+    <nav class="nav-links">
+      <button class="nav-btn" onclick="gotoSection('poets')">الشعراء</button>
+      <button class="nav-btn" onclick="gotoSection('facts')">هل تعلم؟</button>
+      <button class="nav-btn" onclick="gotoSection('quiz')">الاختبار الأدبي</button>
+      <button class="theme-btn" id="themeBtn" title="تبديل الوضع الليلي/الصباحي">🌙</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ================= الواجهة الرئيسية ================= -->
+  <div id="view-home">
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="ornament">❁ ❁ ❁</div>
+      <h2>هنا تتكلم الصحراء بلسان الشعراء</h2>
+      <p>
+        المعلّقات سبعُ قصائدَ جاهلية، اختارتها العربُ ورواتها من عيون الشعر، فبلغت الذروةَ في الفصاحة
+        والتصوير وصناعة المعنى. قيل: كُتبت بماء الذهب، وعُلّقت على أستار الكعبة، فصارت ذاكرةَ أمةٍ
+        حفظتْ بها لسانها. هنا نفتح لك أبوابَ «ذاكرة العرب»: تُطالع المعلّقات، وتقف على مفرداتها،
+        وتُختبر في بلاغتها.
+      </p>
+      <div class="divider"></div>
+    </section>
+
+    <!-- شبكة الشعراء -->
+    <section class="section" id="poets">
+      <h2 class="section-title">الشعراء السبعة</h2>
+      <p class="section-sub">اختر شاعراً لتدخل إلى معلّقته وتحليلها</p>
+      <div class="poets-grid" id="poetsGrid"></div>
+    </section>
+
+    <!-- هل تعلم -->
+    <section class="section" id="facts">
+      <h2 class="section-title">هل تعلم؟</h2>
+      <p class="section-sub">معلومة واحدة في كل مرة… من ذاكرة المعلّقات</p>
+      <div class="fact-box">
+        <div class="fact-icon">❖</div>
+        <div class="fact-text" id="factText"></div>
+        <div class="fact-footer">
+          <button class="btn" id="nextFactBtn">المعلومة التالية ↺</button>
+          <span class="counter" id="factCounter">1 / 20</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- الاختبار -->
+    <section class="section" id="quiz">
+      <h2 class="section-title">الاختبار الأدبي</h2>
+      <p class="section-sub">ثلاثة مستويات متدرجة… اختر إجابتك واقرأ التوضيح فوراً</p>
+      <div class="quiz-tabs" id="quizTabs"></div>
+      <div id="quizBody"></div>
+      <div class="score-bar" id="scoreBar"></div>
+    </section>
+
+  </div>
+
+  <!-- ================= صفحة الشاعر ================= -->
+  <div id="view-poet" class="hidden"></div>
+</main>
+
+<!-- ================= التذييل ================= -->
+<footer>
+  <div class="signature">صنع بواسطة الطالب : علي امحمد علي الهمالي</div>
+  <p class="note">ديوان المعلّقات — ذاكرة العرب | تطبيق تعليمي تفاعلي بملف واحد</p>
+</footer>
+
+<div id="vocabTip"></div>
+<div id="toast"></div>
+
+<script>
+/* =====================================================================
+   1) بيانات الشعراء والمعلّقات
+   ===================================================================== */
+
+const POETS = [
+/* ---------- 1) امرؤ القيس ---------- */
+{
+  id:'imru',
+  name:'امرؤ القيس',
+  full:'امرؤ القيس بن حُجر بن الحارث الكندي',
+  laqab:'الملك الضليل / ذو القروح',
+  tribe:'كندة',
+  era:'الجاهلية — نحو 500–540 م',
+  emblem:'♛',
+  bio:'امرؤ القيس بن حُجر بن الحارث الكندي، من أشرف بيوت العرب في الجاهلية؛ فأبوه حُجر ملكٌ على كندة وأسد. نشأ مترفاً في نعيم الملوك، فمال إلى اللهو والغزل والتنقّل في البوادي، حتى غضب عليه أبوه فطرده. وبعد أن قُتل أبوه ثار يطلب ثأره، فتنقّل بين قبائل العرب يستنصر بها، ثم قصد قيصر الروم مستنجداً فلم يُجده، ومات غريباً بأرض الأناضول بداء الجدري، ولذلك لُقّب «ذا القروح». وهو عند النقاد أول من «قصد القصائد ووقف واستوقف وبكى وذكّر»، وأجود الشعراء وصفاً للخيل والليل والوحش، ويُعدّ رأس الشعر الجاهلي بلا منازع.',
+  analysis:'معلّقة امرئ القيس من أقدم المعلّقات وأشهرها روايةً، وتقوم على فَنِّ «الانتقال» بين الأغراض: تبدأ بالوقوف على الأطلال والبكاء على الديار، ثم تنتقل إلى الغزل، فإلى وصف الفرس والطرد والليل، ثم تُختم بمشهد المطر والسيول. وأعظم ما فيها وصفُه للفرس في قوله «بمنجرد قيد الأوابد هيكل»، فقد صوّر السرعة تصويراً حركياً يُدهش، حتى قيل: «إنه وقف على باب الشعر». ومطلعها «قفا نبكِ» صار أصلاً في الافتتان بالأطلال، سار عليه الشعراء بعده.',
+  vocab:{
+    'سقط اللوى':'مُنقطَع الرمل المستدير، وهو موضع من ديارهم',
+    'الدخول':'اسم موضع بين عكاظ والطائف',
+    'حومل':'اسم موضع في البادية',
+    'الأرانب':'جمع أرنب، وهي الحيوان البري المعروف',
+    'عرصاتها':'ساحاتُها وفِناؤها',
+    'ناقف حنظل':'كاسرُ ثمرِ الحنظل، ومَثَلٌ لمن يشقى بلا طائل',
+    'معوّل':'مَبْكًى ومُعتمَد',
+    'منجرد':'فرسٌ قصيرُ الشَّعر شديدُ السُّرعة',
+    'الأوابد':'الوحوش التي لا تُدرَك',
+    'هيكل':'عظيمُ الخَلْق طويلُه',
+    'جلمود':'الصخرةُ الصلبة الكبيرة',
+    'الصفواء':'الصخرةُ الملساء',
+    'المتنزل':'المكانُ المنحدر من الجبل',
+    'الذبل':'جمعُ ذابل، وهو الضامرُ من الدواب',
+    'اهتزامه':'صوتُه وتردُّده',
+    'المرجل':'القِدرُ من النحاس',
+    'أيطلا':'مثنّى «أيطل»، وهو الخاصرتان',
+    'سرحان':'الذئب',
+    'تتفل':'ولدُ الثعلب'
+  },
+  verses:[
+    ['قِفا نَبكِ مِن ذِكرى حَبيبٍ وَمَنزِلِ','بِسِقطِ اللِوى بَينَ الدَخولِ فَحَومَلِ'],
+    ['فَتوضِحَ فَالمِقراةِ لَم يَعفُ رَسمُها','لِما نَسَجَتها مِن جَنوبٍ وَشَمأَلِ'],
+    ['تَرى بَعَرَ الأَرانِبِ في عَرَصاتِها','وَقيعانِها كَأَنَّهُ حَبُّ فُلفُلِ'],
+    ['كَأَنّي غَداةَ البَينِ يَومَ تَحَمَّلوا','لَدى سَمُراتِ الحَيِّ ناقِفُ حَنظَلِ'],
+    ['وُقوفاً بِها صَحبي عَلَيَّ مَطِيَّهُم','يَقولونَ لا تَهلِك أَسىً وَتَجَمَّلِ'],
+    ['وَإِنَّ شِفائي عَبرَةٌ مُهراقَةٌ','فَهَل عِندَ رَسمٍ دارِسٍ مِن مُعَوَّلِ'],
+    ['وَقَد أَغتَدي وَالطَيرُ في وُكُناتِهِ','بِمُنجَرِدٍ قَيدِ الأَوابِدِ هَيكَلِ'],
+    ['مِكَرٍّ مِفَرٍّ مُقبِلٍ مُدبِرٍ مَعاً','كَجُلمودِ صَخرٍ حَطَّهُ السَيلُ مِن عَلِ'],
+    ['كَمَيتٍ يَزِلُّ اللَبدُ عَن حالِ مَتنِهِ','كَما زَلَّتِ الصَفواءُ بِالمُتَنَزَّلِ'],
+    ['عَلى الذَبلِ جَيَّاشٌ كَأَنَّ اِهتِزامَهُ','إِذا جاشَ فيهِ حَميُهُ غَليُ مِرَجَلِ'],
+    ['لَهُ أَيطَلا ظَبيٍ وَساقا نَعامَةٍ','وَإِرخاءُ سِرحانٍ وَتَقريبُ تَتَفُلِ']
+  ]
+},
+
+/* ---------- 2) طرفة بن العبد ---------- */
+{
+  id:'tarafa',
+  name:'طرفة بن العبد',
+  full:'طرفة بن العبد بن سفيان البكري (واسمه عمرو)',
+  laqab:'طرفة / الشاعر الفتى',
+  tribe:'بكر بن وائل',
+  era:'الجاهلية — نحو 543–569 م',
+  emblem:'✦',
+  bio:'طرفة بن العبد البكري، من أعرق بيوت بكر بن وائل وأكرمها نفساً. نشأ يتيماً في كنف أعمامه، وكان شديد الذكاء جريء اللسان، لا يهاب الملوك ولا يُبالي بالعواقب. اتصل ببلاط عمرو بن هند ملك الحيرة، ثم هجاه وقُطع بينه وبين الملك، فدُسّ إليه من قتله وهو في نحو السادسة والعشرين من عمره. وقد جمع في شعره بين حرارة الفتوة، ومرارة الفقر، وسخرية الأريب، مع وصف بديع للناقة والخمرة.',
+  analysis:'تفتتح المعلّقة بالوقوف على أطلال «خولة» في «برقة ثهمد»، ثم تنتقل إلى وصف الناقة وصفاً عجيباً يجعلها سفينةَ الصحراء، في مشهدية تمتزج فيها الحركة بالماء والرمل. وتتميز المعلّقة بخيالها الجسور وغرابة صورها، فتراه يشبّه النساء بالظباء والخيام بسفن البحر. ثم تتحول إلى الحكمة والتأمل في الموت والدهر، وفيها بيتُ الحكمة الشهير في ظلم الأقارب، وهو من أصدق ما قيل في تمزّق الأرحام.',
+  vocab:{
+    'برقة ثهمد':'اسم موضع في ديار بكر',
+    'الوشم':'علامةٌ تُرسم على الجلد بالمداد الأخضر',
+    'الأرآم':'جمعُ رِئم، وهو ولدُ الظبية',
+    'نيق':'الجبلُ المرتفع',
+    'معصفد':'صلبٌ مُمتنع',
+    'حدوج':'جمعُ حَدَج، وهو مركبُ النساء على البعير',
+    'خلايا':'جمعُ خليّة، وهي السفينة',
+    'النواصف':'اسم موضع',
+    'دَد':'اسم موضع',
+    'عدولية':'منسوبة إلى «عدولي»، وهي سفنٌ معروفة',
+    'حيزوم':'صدرُ السفينة',
+    'المعيل':'الذي يغرف بيده',
+    'أحوى':'أسمرُ اللون',
+    'المرد':'جمعُ أمرد، وهو الشابُّ الذي لم تنبت لحيته',
+    'شادن':'ولدُ الظبية',
+    'خذول':'التي تتخلى عن ولدها',
+    'الخميلة':'الشجرُ الكثيف الملتف',
+    'البرير':'ثمرُ الأراك',
+    'مضاضة':'ألمٌ ووجع',
+    'المهند':'السيفُ المصنوع من حديد الهند'
+  },
+  verses:[
+    ['لِخَولَةَ أَطلالٌ بِبُرقَةِ ثَهمَدِ','تَلوحُ كَباقي الوَشمِ في ظاهِرِ اليَدِ'],
+    ['بِها العَينُ وَالأَرآمُ يَمسَحنَ عُطفَها','وَيَرتَعِنَ في أَكنافِ نيقٍ مُعَصَّدِ'],
+    ['كَأَنَّ حُدوجَ المالِكِيَّةِ غُدوَةً','خَلايا سَفينٍ بِالنَواصِفِ مِن دَدِ'],
+    ['عَدَولِيَّةٌ أَو مِن سَفينِ اِبنِ يامِنٍ','يَجورُ بِها المَلّاحُ طَوراً وَيَهتَدي'],
+    ['يَشُقُّ حَبابَ الماءِ حَيزومُها بِها','كَما قَسَمَ التُربَ المُعَيَّلُ بِاليَدِ'],
+    ['وَفِي الحَيِّ أَحوى يَنفُضُ المَردَ شادِنٌ','مُظاهِرُ سِمطَي لُؤلُؤٍ وَتَقَدُّدِ'],
+    ['خَذولٌ تُراعي رَبرَباً بِخَميلَةٍ','تَناوِلُ أَطرافَ البَريرِ وَتَرتَدي'],
+    ['وَظُلمُ ذَوي القُربى أَشَدُّ مَضاضَةً','عَلَى المَرءِ مِن وَقعِ الحُسامِ المُهَنَّدِ']
+  ]
+},
+
+/* ---------- 3) زهير بن أبي سلمى ---------- */
+{
+  id:'zuhair',
+  name:'زهير بن أبي سلمى',
+  full:'زهير بن أبي سُلمى ربيعة بن رباح المُزَني',
+  laqab:'شاعر السلام / حكيم الشعراء',
+  tribe:'غطفان (بنو مُرّة)',
+  era:'الجاهلية — نحو 520–609 م',
+  emblem:'⚖',
+  bio:'زهير بن أبي سُلمى من بني مُرّة من غطفان، وأبوه ربيعة كان شاعراً، وزوجته كبشة بنت عوّاد كانت شاعرة، وابنه كعب صاحب «البردة». نشأ في بيت شعر، واشتهر برجاحة العقل وبُعد النظر وحبّ الإصلاح. عاصر حربَ داحس والغبراء بين عبس وذبيان، فكان لسانَ الدعوة إلى السلم والإصلاح، وقد مدح سادةَ القبيلة في قصيدته التي قيلت بعد الصلح. ويُروى أنه كان يُطيل تنقيح شعره حتى سُمّي شعره «الحوليّات»؛ لأنه ينظم القصيدة في حولٍ كامل.',
+  analysis:'معلّقة زهير من أرقى المعلّقات حكمةً وفناً؛ فهي تبدأ بالوقوف على الأطلال ثم تنتقل إلى وصف الديار ومواضع القدر، ثم تبلغ غرضها الأسمى: الدعوة إلى الصلح بعد حربٍ دامية، وبيان فداحة الحرب ومآسيها، حتى صار قوله «متى تبعثوها تبعثوها ذميمةً» من أبلغ ما قيل في ذمّ الحرب. ويمتاز أسلوب زهير بالتمهّل والترسّل والتوازن بين الصدر والعجز، وبكثرة الأمثال والحِكم، حتى عُدّ من «أصحاب الوحدة الفنية» في القصيدة العربية.',
+  vocab:{
+    'دمنة':'آثارُ الدار وطلَلُها',
+    'حومانة':'اسم موضع',
+    'الدراج':'اسم موضع',
+    'المتثلم':'اسم موضع',
+    'الرقطتين':'اسم موضع',
+    'مراجيع':'جمعُ مِرجاع، وهو الوشمُ المُعاد',
+    'نواشر':'جمعُ ناشر، وهو عِرقٌ في الذراع',
+    'أثافي':'الحجارةُ التي تُنصب عليها القدر',
+    'سُفع':'جمعُ أسفع، وهو المائل إلى السواد',
+    'معرّس':'موضعُ نصبِ القِدر',
+    'نُؤي':'الحفرةُ التي تُحاط بها الخيمة',
+    'جذم':'ما بقي من الحوض',
+    'المرجَّم':'الظنُّ والتخمين',
+    'ضريتموها':'أوقدتموها',
+    'تضرم':'تشتعل وتتقد',
+    'أشأم':'مشؤوم'
+  },
+  verses:[
+    ['أَمِن أُمِّ أَوفى دِمنَةٌ لَم تَكَلَّمِ','بِحَومانَةِ الدَرّاجِ فَالمُتَثَلَّمِ'],
+    ['وَدارٌ لَها بِالرَقطَتَينِ كَأَنَّها','مَراجيعُ وَشمٍ في نَواشِرِ مِعصَمِ'],
+    ['وَقَفتُ بِها مِن بَعدِ عِشرينَ حِجَّةً','فَلأياً عَرَفتُ الدارَ بَعدَ التَوَهُّمِ'],
+    ['أَثافيَّ سُفعاً في مُعَرَّسِ مِرجَلٍ','وَنُؤياً كَجِذمِ الحوضِ لَم يَتَثَلَّمِ'],
+    ['وَمَن يَكُ ذا فَضلٍ فَيَبخَل بِفَضلِهِ','عَلى قَومِهِ يُستَغنَ عَنهُ وَيُذمَمِ'],
+    ['وَما الحَربُ إِلّا ما عَلِمتُم وَذُقتُمُ','وَما هِيَ عَنها بِالحَديثِ المُرَجَّمِ'],
+    ['مَتى تَبعَثوها تَبعَثوها ذَميمَةً','وَتَضرَ إِذا ضُرِّيتُموها فَتَضرَمِ'],
+    ['فَتُنتِج لَكُم غِلمانَ أَشأَمَ كُلِّهِم','كَأَحمرِ عادٍ ثُمَّ تُرضِع فَتَفطِمِ']
+  ]
+},
+
+/* ---------- 4) لبيد بن ربيعة ---------- */
+{
+  id:'labid',
+  name:'لبيد بن ربيعة',
+  full:'لبيد بن ربيعة بن مالك العامري',
+  laqab:'شاعر بني عامر / المخضرم',
+  tribe:'عامر بن صعصعة (هوازن)',
+  era:'الجاهلية والإسلام — توفي نحو 41 هـ',
+  emblem:'☘',
+  bio:'لبيد بن ربيعة العامري، سيدُ بني عامر بن صعصعة وفارسهم وشاعرهم. كان من أشرف العرب نفساً وأكرمهم يداً، عاش عمراً طويلاً أدرك فيه الجاهلية والإسلام، فأسلم وحسن إسلامه، وترك الشعر بعد إسلامه إلا قليلاً، وقال: «إن الله قد استبدلني به ما هو خير منه». وقد عاش إلى نحو الثمانين من الهجرة، وكان يُعطى في العطاء في الإسلام فيُكثر منه حتى قيل: إنه كان من أكثر الناس مالاً.',
+  analysis:'معلّقة لبيد تبدأ بالوقوف على الديار التي عفتها الرياح والسيول، ثم تصف المطر والغيوم وصفاً بديعاً، فترسم لوحةً من السماء والصحراء معاً. وتتميز المعلّقة بالرصانة والهدوء والتأمل الفلسفي في فناء الديار وبقاء الدهر، ثم تنتقل إلى وصف الناقة والفرس والخمر والمجالس. وفي مطلعها «عفت الديار محلها فمقامها» نبرةٌ من الحزن الرفيع على فناء الأشياء، وهي من أصفى مطالع المعلّقات وأكثرها موسيقى.',
+  vocab:{
+    'عفت':'دَرَسَت وامّحَت',
+    'محلّها':'موضعُ نزولها',
+    'مقامها':'موضعُ إقامتها',
+    'مِنى':'اسم موضع قرب مكة',
+    'تأبّد':'توحّش وخلَت من الأنس',
+    'غولها':'اسم موضع',
+    'رجامها':'اسم موضع',
+    'الريان':'اسم موضع',
+    'عُرِّيَ':'خلا وفَرَغ',
+    'الوحي':'الكتابة',
+    'سِلامها':'حجارتُها',
+    'دِمَن':'جمعُ دِمْنة، وهي آثارُ الديار',
+    'تَجَرَّم':'تقضّى وانقضى',
+    'مرابيع':'جمعُ مِرباع، وهو مطرُ الربيع',
+    'صابها':'أمطرها',
+    'وَدْق':'المطر',
+    'رِهام':'المطرُ الضعيف',
+    'سارية':'السحابةُ التي تسري ليلاً',
+    'مُدجِن':'السحابُ الممطر',
+    'سَجَت':'دامت وأظلمت',
+    'جلا':'كشف وأزال',
+    'زُبُر':'جمعُ زَبور، وهو الكتاب',
+    'مُتونها':'صفحاتُها',
+    'صُمّاً':'لا تسمع',
+    'خوالد':'باقيةٌ لا تفنى'
+  },
+  verses:[
+    ['عَفَتِ الدِيارُ مَحَلُّها فَمُقامُها','بِمِنىً تَأَبَّدَ غَولُها فَرِجامُها'],
+    ['فَمَدافِعُ الرَيّانِ عُرِّيَ رَسمُها','خَلَقاً كَما ضَمِنَ الوُحِيَّ سِلامُها'],
+    ['دِمَنٌ تَجَرَّمَ بَعدَ عَهدِ أَنيسِها','حِجَجٌ خَلَونَ حَلالُها وَحَرامُها'],
+    ['رُزِقَت مَرابيعَ النُجومِ وَصابَها','وَدقُ الرَواعِدِ جَودُها فَرِهامُها'],
+    ['مِن كُلِّ سارِيَةٍ وَغادٍ مُدجِنٍ','وَعَشِيَّةٍ سَجَت فَما تَبسامُها'],
+    ['وَجَلا السُيولُ عَنِ الطُلولِ كَأَنَّها','زُبُرٌ تُجِدُّ مُتونَها أَقلامُها'],
+    ['فَوَقَفتُ أَسأَلُها وَكَيفَ سُؤالُنا','صُمّاً خَوالِدَ ما يُبينُ كَلامُها']
+  ]
+},
+
+/* ---------- 5) عمرو بن كلثوم ---------- */
+{
+  id:'amr',
+  name:'عمرو بن كلثوم',
+  full:'عمرو بن كلثوم بن مالك التغلبي',
+  laqab:'فارس تغلب / سيد تغلب',
+  tribe:'تغلب بن وائل',
+  era:'الجاهلية — نحو 520–584 م',
+  emblem:'⚔',
+  bio:'عمرو بن كلثوم بن مالك التغلبي، سيدُ تغلب وفارسها الأوحد. كان أعزَّ أهل زمانه وأمنعهم، لا يُجارى في فخره ولا يُبارى في بأسه. وأشهرُ خبره مقتلُه الملكَ عمرو بن هند في بلاط الحيرة، حين أهانت الملكةُ أمَّه «ليلى بنت المهلهل» فاستغاثت به، فقام إلى الملك فقتله بقائمة سيف، وصاح في الناس فانصرفوا. وقد قيل: إنه لم يكن في العرب أحدٌ أشدَّ إباءً ولا أعظمَ فخراً بقومه منه.',
+  analysis:'معلّقة عمرو بن كلثوم قصيدةُ فخرٍ وحماسة، تبدأ بمطلعٍ خمريّ صاخب «ألا هُبّي بصحنك فأصبحينا»، ثم تنتقل إلى الفخر بقبيلة تغلب وبأمجادها وحروبها، في إيقاعٍ جهوريٍّ يملأ الفم. وتقوم القصيدة على مقابلاتٍ بليغة بين الرايات البيض والحمر، وبين الصفو والكدر في الماء، وبين العدل والظلم. وقد صار مطلعها مثلاً في الطرب والحماسة، وقيل: إنها «من أنفس ما قيل في الفخر على الإطلاق».',
+  vocab:{
+    'هُبّي':'قومي وانتبهي',
+    'الصحن':'القدحُ العريض',
+    'الأندرين':'اسم موضع أو قرية بالشام',
+    'اليقين':'الخبرُ الثابت',
+    'الرايات':'الأعلام',
+    'نُصدِرهن':'نُرجعُهن',
+    'روينا':'شربنا حتى ارتوينا',
+    'كدراً':'غيرَ صافٍ',
+    'الجاهلينا':'جمعُ جاهل، على غير القياس',
+    'عصينا':'خالفنا',
+    'ندين':'نخضع ونُذَل'
+  },
+  verses:[
+    ['أَلا هُبِّي بِصَحنِكِ فَاِصبَحينا','وَلا تُبقي خُمورَ الأَندَرينا'],
+    ['أَبا هِندٍ فَلا تَعجَل عَلَينا','وَأَنظِرنا نُخبِركَ اليَقينا'],
+    ['بِأَنّا نُورِدُ الراياتِ بيضاً','وَنُصدِرُهُنَّ حُمراً قَد رَوينا'],
+    ['أَلا لا يَجهَلَنَّ أَحَدٌ عَلَينا','فَنَجهَلَ فَوقَ جَهلِ الجاهِلينا'],
+    ['وَنَشرَبُ إِن وَرَدنا الماءَ صَفوَاً','وَيَشرَبُ غَيرُنا كَدِراً وَطيناً'],
+    ['بِأَيّامٍ لَنا غُرٍّ طِوالٍ','عَصَينا المَلِكَ فيها أَن نَدينا']
+  ]
+},
+
+/* ---------- 6) عنترة بن شداد ---------- */
+{
+  id:'antara',
+  name:'عنترة بن شداد',
+  full:'عنترة بن شداد بن عمرو العبسي',
+  laqab:'عنترة الفوارس / أبو الفوارس',
+  tribe:'عبس',
+  era:'الجاهلية — نحو 525–608 م',
+  emblem:'🐎',
+  bio:'عنترة بن شداد العبسي، فارسُ العرب وشاعرُها، وُلد من أمٍّ حبشية اسمها «زبيدة»، فكان عبداً لأبيه شداد حتى أثبت شجاعته في حرب داحس، فاعترف به أبوه وألحقه بنسبه. جمع بين الفروسية والشعر جمعاً لم يبلغه أحد، فكان يُقاتل ويقول الشعر في المعركة نفسها. وقد عُرف بحبه لابنة عمه «عبلة»، وظلّ يفخر بفروسيته وبأخلاقه حتى رفع نفسه من العبودية إلى سُؤدد القبيلة.',
+  analysis:'معلّقة عنترة تبدأ بالوقوف على الديار والتوجّع من هجر «عبلة»، ثم تنطلق في وصف الناقة والفروسية، وتختم بالفخر بالشجاعة والكرم والوفاء. وتتميز بصدق العاطفة وحرارة الوجدان، حتى إن النقاد قالوا: «إن عنترة يبكي في شعره بكاءً حقيقياً». وفيها بيتُ الحكمة الشهير في إعراضه عن سبّ اللئيم، وهو من أرفع ما قيل في كرم الأخلاق والنفس الأبية.',
+  vocab:{
+    'مُترَدَّم':'موضعٌ للترميم، أي: لم يبقَ مجالٌ للزيادة',
+    'الجَواء':'اسم موضع',
+    'وعِمّي صباحاً':'أخرب اللهُ صباحها (دعاءٌ عليها بالخراب)',
+    'فَدَن':'القصرُ المُحكم',
+    'المُتَلَوِّم':'المنتظرُ المُتمهّل',
+    'الصَّمّان':'اسم موضع',
+    'المتخيَّم':'موضعُ الخيام',
+    'أقوى':'خلا',
+    'أقفر':'خلَت من الأنس',
+    'أم الهيثم':'كنيةُ عبلة',
+    'الطَّوى':'الجوع',
+    'أُظِلُّه':'أستظلُّ به وأصبر عليه',
+    'اللئيم':'الدنيءُ الخسيس'
+  },
+  verses:[
+    ['هَل غادَرَ الشُعَراءُ مِن مُتَرَدَّمِ','أَم هَل عَرَفتَ الدارَ بَعدَ تَوَهُّمِ'],
+    ['يا دارَ عَبلَةَ بِالجَواءِ تَكَلَّمي','وَعِمي صَباحاً دارَ عَبلَةَ وَاسلَمي'],
+    ['فَوَقَفتُ فيها ناقَتي وَكَأَنَّها','فَدَنٌ لِأَقضِيَ حاجَةَ المُتَلَوِّمِ'],
+    ['وَتَحُلُّ عَبلَةُ بِالجَواءِ وَأَهلُنا','بِالحَزنِ فَالصَمّانِ فَالمُتَخَيَّمِ'],
+    ['حُيِّيتَ مِن طَلَلٍ تَقادَمَ عَهدُهُ','أَقوى وَأَقفَرَ بَعدَ أُمِّ الهَيثَمِ'],
+    ['وَلَقَد أَبيتُ عَلى الطَوى وَأُظِلُّهُ','حَتّى أَنالَ بِهِ كَريمَ المَأكَلِ'],
+    ['وَلَقَد أَمُرُّ عَلى اللَئيمِ يَسُبُّني','فَمَضَيتُ ثُمَّتَ قُلتُ لا يَعنيني']
+  ]
+},
+
+/* ---------- 7) الحارث بن حلزة ---------- */
+{
+  id:'harith',
+  name:'الحارث بن حلزة',
+  full:'الحارث بن حلزة بن مكروه اليشكري',
+  laqab:'شاعر المنطق / ذو الحُجّة',
+  tribe:'بكر بن وائل (يشكر)',
+  era:'الجاهلية — نحو 500–570 م',
+  emblem:'📜',
+  bio:'الحارث بن حلزة اليشكري، شاعرٌ حكيمٌ خطيبٌ مفوّه، من أشعر شعراء بكر بن وائل وأشدّهم حُجّةً وبياناً. وفد على الملك عمرو بن هند في بلاط الحيرة مدافعاً عن قومه بكر أمام تغلب، فألقى معلّقته التي تُعدّ من أعظم قصائد الدفاع عن القبيلة، حتى قال بعضهم: «ما قام في العرب خطيبٌ ولا شاعرٌ أشدُّ منطقاً ولا أوضحُ حُجّةً منه». وقد عُرف شعره بالرصانة وحسن النسج ودقّة الحُجة.',
+  analysis:'معلّقة الحارث بن حلزة قصيدةُ مُحاكمةٍ وحُجّة، لا قصيدةُ غزلٍ أو حماسة؛ فهي تُخاطب الملك وتُدافع عن القبيلة وتُفنّد دعاوى الخصوم، فجاءت كالخطبة المنظومة. تبدأ بالوقوف على الأطلال ووداع «أسماء» على عادة الجاهليين، ثم تنتقل إلى الغرض الأساسي: الفخر ببكر والردّ على تغلب. ويمتاز أسلوبها بالترتيب المنطقي وتسلسل الحُجج، ولذلك سُمّي صاحبها «شاعر المنطق».',
+  vocab:{
+    'آذَنَتنا':'أعلمتنا وأشعرتنا',
+    'بِبَينِها':'بفراقها',
+    'ثاوٍ':'مقيمٌ',
+    'يَمَلُّ':'يَسأم',
+    'الثَواء':'الإقامة',
+    'ضَوضاء':'جلبةٌ وصياح'
+  },
+  verses:[
+    ['آذَنَتنا بِبَينِها أَسماءُ','رُبَّ ثاوٍ يَمَلُّ مِنهُ الثَواءُ'],
+    ['أَجمَعوا أَمرَهُم بِلَيلٍ فَلَمّا','أَصبَحوا أَصبَحَت لَهُم ضَوضاءُ']
+  ]
+}
+];
+
+/* =====================================================================
+   2) بيانات «هل تعلم؟» — 20 معلومة
+   ===================================================================== */
+const FACTS = [
+  'المعلّقات سبعُ قصائدَ جاهلية، سُمّيت بهذا الاسم لأنها كُتبت بماء الذهب وعُلّقت على أستار الكعبة، فصارت مفخرةً للعرب جميعاً.',
+  'سوق عكاظ كان يُقام في شهر ذي القعدة من كل عام، وكان منصةً للتنافس الشعري والخطابي بين قبائل العرب، يُحكّم فيه النقادُ بين الشعراء.',
+  'امرؤ القيس هو أول من «قصد القصائد ووقف واستوقف وبكى وذكّر»، ويُعدّ عند النقاد رأسَ الشعراء الجاهليين وأقدمَ من فتح باب الوقوف على الأطلال.',
+  'لُقّب امرؤ القيس بـ«ذي القروح» لأنه مات بداء الجدري في أرض الأناضول وهو غريبٌ بعيد عن قومه، بعد أن خذله قيصر الروم.',
+  'عنترة بن شداد كان عبداً لأبيه شداد حتى أثبت شجاعته في حرب داحس والغبراء، فاعترف به أبوه وألحقه بنسبه فصار سيداً في قومه.',
+  'عمرو بن كلثوم قتل الملك عمرو بن هند في بلاطه بالحيرة، بعد أن أهانت الملكةُ أمَّه «ليلى بنت المهلهل»، فقام إليه بقائمة سيف فقتله.',
+  'لبيد بن ربيعة أسلم وحسن إسلامه، وترك الشعر بعد إسلامه، وقال: «إن الله قد استبدلني به ما هو خيرٌ منه».',
+  'زهير بن أبي سلمى كان يُطيل تنقيح شعره حتى سُمّي شعره «الحوليّات»، لأنه كان ينظم القصيدة في حولٍ كامل يُهذّبها فيه.',
+  'طرفة بن العبد لم يبلغ السادسة والعشرين من عمره حين قُتل، ومع ذلك خُلّد اسمه في أشهر قصائد العرب.',
+  'المعلّقات تُسمّى أيضاً «المُذهَّبات» لأنها ذُهِّبت، أي كُتبت بماء الذهب في القباطي (الحرير) ثم عُلّقت.',
+  'عدد المعلّقات المشهورة سبع، وهناك من الرواة من يعدّها عشراً فيضمّ إليها معلّقات النابغة الذبياني والأعشى وعبيد بن الأبرص.',
+  'من أشهر رواة الشعر الجاهلي: حمّاد الراوية وخلف الأحمر، وقد كان لهما أثرٌ كبير في جمع المعلّقات وروايتها.',
+  'امرؤ القيس أول من شبّه الفرس بالوحوش في سرعتها، فجعل فرسه «قيدَ الأوابد»، أي أنها تُلحق الوحوشَ فلا تفوتها.',
+  'عنترة بن شداد من أشهر فرسان العرب وأشعرهم، جمع بين الفروسية والشعر جمعاً لم يبلغه أحدٌ قبله ولا بعده.',
+  'المعلّقات مكتوبةٌ على نظام الشطرين: الصدر والعجز، وهو ما يُعرف في العروض العربي بالبيت التام.',
+  'زهير بن أبي سلمى يُعدّ من «أصحاب الوحدة الفنية» في القصيدة العربية، فقصيدته تُبنى على فكرةٍ واحدة تنتظم أبياتها.',
+  'حرب داحس والغبراء بين عبس وذبيان استمرت نحو أربعين سنة، وكانت سبباً في نظم زهير معلّقته الشهيرة في الصلح وذمّ الحرب.',
+  'الحارث بن حلزة اليشكري لُقّب بـ«شاعر المنطق» لأن قصيدته أقرب إلى المحاكمة والخطبة المنظومة منها إلى الغزل والحماسة.',
+  'طرفة بن العبد من أدقّ الشعراء الجاهليين في وصف الناقة والخمرة، ويُضرب بشعره المثلُ في خيالٍ جسورٍ وصورٍ غريبة.',
+  'المعلّقات ذاكرةُ اللغة العربية الأولى؛ فمنها استنبط النحاةُ كثيراً من القواعد، واحتجّ بها اللغويون في معاجمهم.'
+];
+
+/* =====================================================================
+   3) بيانات الاختبار — 3 مستويات
+   ===================================================================== */
+const QUIZ = {
+  1:{
+    label:'مستوى مبتدئ',
+    desc:'ألقاب الشعراء، القبائل، وأسماء المعلّقات',
+    questions:[
+      {
+        q:'من الشاعر الملقّب بـ«الملك الضليل»؟',
+        options:['زهير بن أبي سلمى','امرؤ القيس','طرفة بن العبد','عنترة بن شداد'],
+        answer:1,
+        exp:'امرؤ القيس بن حُجر الكندي يُلقّب بـ«الملك الضليل» و«ذي القروح»، لأنه كان ملكاً ضلّ الطريق في طلب ثأر أبيه ثم مات غريباً مريضاً.'
+      },
+      {
+        q:'إلى أي قبيلة ينتمي الشاعر عنترة بن شداد؟',
+        options:['بكر بن وائل','عبس','تغلب','كندة'],
+        answer:1,
+        exp:'عنترة من قبيلة عبس، وقد كان عبداً لأبيه شداد العبسي حتى اعتُرف به بعد أن أثبت شجاعته في حرب داحس والغبراء.'
+      },
+      {
+        q:'من صاحب معلّقة مطلعها: «ألا هُبّي بصحنكِ فأصبحينا»؟',
+        options:['عمرو بن كلثوم','الحارث بن حلزة','لبيد بن ربيعة','طرفة بن العبد'],
+        answer:0,
+        exp:'هذا مطلع معلّقة عمرو بن كلثوم التغلبي، وهو مطلعٌ خمريّ صاخب يفتتح به قصيدته الفخرية العظيمة.'
+      },
+      {
+        q:'من صاحب معلّقة مطلعها: «هل غادَرَ الشعراءُ من مُترَدَّمِ»؟',
+        options:['عنترة بن شداد','امرؤ القيس','زهير بن أبي سلمى','لبيد بن ربيعة'],
+        answer:0,
+        exp:'هذا مطلع معلّقة عنترة بن شداد العبسي، وهو من أشهر مطالع الشعر العربي في الوقوف على الأطلال.'
+      },
+      {
+        q:'من الشاعر الذي يُلقّب بـ«حكيم الشعراء» و«شاعر السلام»؟',
+        options:['طرفة بن العبد','زهير بن أبي سلمى','عمرو بن كلثوم','الحارث بن حلزة'],
+        answer:1,
+        exp:'زهير بن أبي سلمى عُرف بحكمته ودعوته إلى الصلح بعد حرب داحس والغبراء، فسُمّي حكيم الشعراء وشاعر السلام.'
+      },
+      {
+        q:'كم عدد المعلّقات المشهورة عند جمهور الرواة؟',
+        options:['خمس','سبع','عشر','اثنتا عشرة'],
+        answer:1,
+        exp:'المشهور أنها سبع معلّقات، وإن كان بعض الرواة يعدّها عشراً بإضافة معلّقات النابغة والأعشى وعبيد بن الأبرص.'
+      }
+    ]
+  },
+  2:{
+    label:'مستوى متوسط',
+    desc:'مطالع القصائد، معاني الكلمات، وأسباب المناسبات',
+    questions:[
+      {
+        q:'مطلع معلّقة زهير بن أبي سلمى هو:',
+        options:[
+          'أَمِن أُمِّ أَوفى دِمنَةٌ لَم تَكَلَّمِ',
+          'عَفَتِ الدِيارُ مَحَلُّها فَمُقامُها',
+          'لِخَولَةَ أَطلالٌ بِبُرقَةِ ثَهمَدِ',
+          'قِفا نَبكِ مِن ذِكرى حَبيبٍ وَمَنزِلِ'
+        ],
+        answer:0,
+        exp:'مطلع معلّقة زهير هو «أمن أمِّ أوفى دمنةٌ لم تكلّم / بحومانة الدرّاج فالمتثلّم»، وهو من أصدق مطالع الوقوف على الأطلال.'
+      },
+      {
+        q:'ما معنى «الأرآم» في معلّقة امرئ القيس وطرفة؟',
+        options:['الوحوش الضارية','جمع رِئم وهو ولد الظبية','الطيور المهاجرة','الحجارة الصلبة'],
+        answer:1,
+        exp:'«الأرآم» جمع «رِئم»، وهو ولد الظبية، وقد كثر ذكره في المعلّقات لوصف الأنس والوحشة في الديار المهجورة.'
+      },
+      {
+        q:'ما المقصود بـ«الطَّوى» في قول عنترة: «ولقد أبيتُ على الطَّوى»؟',
+        options:['النوم العميق','الجوع','السفر البعيد','المرض'],
+        answer:1,
+        exp:'«الطَّوى» هو الجوع، أي أنه كان يبيت جائعاً صابراً حتى ينال المأكل الكريم، وفي ذلك فخرٌ بالصبر والجلَد.'
+      },
+      {
+        q:'ما المناسبة التي قيلت فيها معلّقة زهير بن أبي سلمى؟',
+        options:[
+          'الصلح بين عبس وذبيان بعد حرب داحس والغبراء',
+          'رحيل قبيلة تغلب إلى الشام',
+          'مقتل الملك عمرو بن هند',
+          'بناء الكعبة'
+        ],
+        answer:0,
+        exp:'قيلت معلّقة زهير في الصلح الذي تمّ بين عبس وذبيان بعد حرب داحس والغبراء التي استمرت نحو أربعين سنة، ولذلك غلب عليها طابع الدعوة إلى السلم.'
+      },
+      {
+        q:'مطلع معلّقة لبيد بن ربيعة هو:',
+        options:[
+          'آذَنَتنا بِبَينِها أَسماءُ',
+          'عَفَتِ الدِيارُ مَحَلُّها فَمُقامُها',
+          'هَل غادَرَ الشُعَراءُ مِن مُتَرَدَّمِ',
+          'أَلا هُبِّي بِصَحنِكِ فَاِصبَحينا'
+        ],
+        answer:1,
+        exp:'مطلع معلّقة لبيد هو «عفت الديارُ محلُّها فمقامُها / بمنىً تأبَّد غولُها فرجامُها»، وهو من أصفى مطالع المعلّقات موسيقى.'
+      },
+      {
+        q:'ما معنى «الوشم» في قول طرفة: «تلوحُ كباقي الوشمِ في ظاهرِ اليدِ»؟',
+        options:[
+          'أثر الحرق بالنار',
+          'علامة تُرسم على الجلد بالمداد',
+          'نقش على الحجر',
+          'خطّ في الرمل'
+        ],
+        answer:1,
+        exp:'«الوشم» علامةٌ تُرسم على الجلد بالمداد الأخضر، وقد شبّه طرفة بقاءَ الأطلال ببقاء أثر الوشم على ظاهر اليد.'
+      }
+    ]
+  },
+  3:{
+    label:'مستوى متقدم (الأديب)',
+    desc:'اللفتات البلاغية والتفاصيل الدقيقة',
+    questions:[
+      {
+        q:'في قول امرئ القيس: «كأنّ اهتزامَه إذا جاش فيه حَميُه غَليُ مِرجلِ» — ما «المِرجل»؟',
+        options:['الفرس السريعة','القِدر من النحاس','الرمح الطويل','الخيمة الكبيرة'],
+        answer:1,
+        exp:'«المِرجل» هو القِدر من النحاس، وقد شبّه صوتَ صهيل الفرس بغليان الماء في القدر، وهي صورةٌ سمعية بالغة القوة.'
+      },
+      {
+        q:'في قول طرفة: «ظلمُ ذوي القربى أشدُّ مضاضةً على المرء من وقع الحسام المُهنَّد» — ما «الحسام المُهنَّد»؟',
+        options:[
+          'الرمح المصنوع من القنا',
+          'السيف المصنوع من حديد الهند',
+          'الدرع الحصينة',
+          'القوس العربية'
+        ],
+        answer:1,
+        exp:'«الحسام» السيف القاطع، و«المُهنَّد» المنسوب إلى الهند. والمعنى: أن ظلم الأقارب أشدّ إيلاماً للنفس من ضربة السيف؛ وهي حكمةٌ سائرة.'
+      },
+      {
+        q:'في معلّقة زهير: «ونُؤياً كجِذمِ الحوضِ لم يتثلّم» — ما «جِذم الحوض»؟',
+        options:[
+          'ما بقي من الحوض من حجارة',
+          'الماء الراكد في الحوض',
+          'الطين اليابس',
+          'حبل الدلو'
+        ],
+        answer:0,
+        exp:'«جِذم الحوض» ما بقي من حجارة الحوض بعد هدمه، و«النُّؤي» الحفرة التي تُحاط بها الخيمة. وقد استعمل زهير هذه التفاصيل الدقيقة لتصوير الديار الدارسة.'
+      },
+      {
+        q:'في معلّقة طرفة: «خَذولٌ تُراعي رَبرَباً بخَميلةٍ» — ما «الخميلة»؟',
+        options:[
+          'الرمال المتحركة',
+          'الشجر الكثيف الملتف',
+          'الجبل العالي',
+          'الوادي العميق'
+        ],
+        answer:1,
+        exp:'«الخميلة» الشجر الكثيف الملتف، و«الرَّبرَب» نوعٌ من الوحش أو البقر الوحشي. وقد صوّر طرفة الظبيةَ في خميلتها تصويراً رقيقاً.'
+      },
+      {
+        q:'في معلّقة طرفة: «يشقُّ حَبابَ الماءِ حَيزومُها بها» — ما «الحَيزوم»؟',
+        options:['مؤخرة السفينة','صدر السفينة','شراع السفينة','مجداف السفينة'],
+        answer:1,
+        exp:'«الحَيزوم» صدر السفينة، وقد شبّه طرفةُ ناقتَه بالسفينة تشقُّ الماء، فجمع في الصورة بين البحر والصحراء جمعاً بديعاً.'
+      },
+      {
+        q:'قوله تعالى في مطلع زهير: «أمِن أمِّ أوفى…» — الاستفهام هنا يُفيد:',
+        options:[
+          'الإنكار والتوبيخ',
+          'التحسّر والتذكّر والاستفهام الحقيقي عن الدار',
+          'التشكيك في الخبر',
+          'الأمر والنهي'
+        ],
+        answer:1,
+        exp:'الاستفهام في مطالع المعلّقات غالباً ما يخرج عن حقيقته إلى التحسّر والتحزّن واستدعاء الذكرى، وهو ما يُعرف بلاغياً بـ«أسلوب الالتفات إلى الأطلال».'
+      }
+    ]
+  }
+};
+
+/* =====================================================================
+   4) أدوات مساعدة
+   ===================================================================== */
+const AR_DIAC = /[\u064B-\u0652\u0670\u0640]/;
+
+function escapeHtml(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function escapeAttr(s){
+  return escapeHtml(s).replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function stripD(s){ return String(s).replace(/[\u064B-\u0652\u0670\u0640]/g,''); }
+
+/* خريطة المواضع بعد إزالة التشكيل */
+function stripWithMap(s){
+  let out='', map=[];
+  for(let i=0;i<s.length;i++){
+    const c = s[i];
+    if(!AR_DIAC.test(c)){ out += c; map.push(i); }
+  }
+  map.push(s.length);
+  return {out, map};
+}
+
+/* تلوين المفردات الصعبة وإضافة التلميح */
+function annotate(text, vocab){
+  if(!vocab) return escapeHtml(text);
+  const {out, map} = stripWithMap(text);
+  const keys = Object.keys(vocab)
+      .map(k => ({ k, s: stripD(k) }))
+      .sort((a,b) => b.s.length - a.s.length);
+
+  const ranges = [];
+  keys.forEach(({k,s}) => {
+    if(!s) return;
+    let from = 0;
+    while(true){
+      const i = out.indexOf(s, from);
+      if(i < 0) break;
+      const start = map[i];
+      const end   = map[i + s.length - 1] + 1;
+      const overlap = ranges.some(r => start < r.end && end > r.start);
+      if(!overlap){
+        ranges.push({ start, end, exp: vocab[k], word: text.slice(start, end) });
+      }
+      from = i + 1;
+    }
+  });
+  ranges.sort((a,b) => a.start - b.start);
+
+  let html = '', pos = 0;
+  ranges.forEach(r => {
+    html += escapeHtml(text.slice(pos, r.start));
+    html += '<span class="vocab" data-exp="' + escapeAttr(r.exp) + '">' +
+            escapeHtml(r.word) + '</span>';
+    pos = r.end;
+  });
+  html += escapeHtml(text.slice(pos));
+  return html;
+}
+
+/* التنبيه */
+let toastTimer = null;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* =====================================================================
+   5) الوضع الليلي / الصباحي
+   ===================================================================== */
+const LS_THEME = 'diwan_theme_v1';
+const LS_FAV   = 'diwan_fav_v1';
+
+function applyTheme(mode){
+  const btn = document.getElementById('themeBtn');
+  if(mode === 'dark'){
+    document.body.classList.add('dark');
+    btn.textContent = '☀️';
+    btn.title = 'التحويل إلى الوضع الصباحي';
+  }else{
+    document.body.classList.remove('dark');
+    btn.textContent = '🌙';
+    btn.title = 'التحويل إلى الوضع الليلي';
+  }
+}
+
+document.getElementById('themeBtn').addEventListener('click', () => {
+  const isDark = document.body.classList.toggle('dark');
+  localStorage.setItem(LS_THEME, isDark ? 'dark' : 'light');
+  applyTheme(isDark ? 'dark' : 'light');
+  toast(isDark ? 'تم تفعيل الوضع الليلي 🌙' : 'تم تفعيل الوضع الصباحي ☀️');
+});
+
+/* =====================================================================
+   6) المفضلة
+   ===================================================================== */
+function getFavs(){
+  try{ return JSON.parse(localStorage.getItem(LS_FAV)) || []; }
+  catch(e){ return []; }
+}
+function setFavs(arr){
+  localStorage.setItem(LS_FAV, JSON.stringify(arr));
+}
+function isFav(id){ return getFavs().indexOf(id) !== -1; }
+function toggleFav(id){
+  const favs = getFavs();
+  const i = favs.indexOf(id);
+  if(i === -1){ favs.push(id); setFavs(favs); return true; }
+  favs.splice(i,1); setFavs(favs); return false;
+}
+
+/* =====================================================================
+   7) بناء شبكة الشعراء
+   ===================================================================== */
+function renderPoetsGrid(){
+  const grid = document.getElementById('poetsGrid');
+  grid.innerHTML = POETS.map((p, i) => `
+    <article class="poet-card ${isFav(p.id) ? 'is-fav' : ''}" data-index="${i}" role="button" tabindex="0">
+      <span class="fav-star">⭐</span>
+      <div class="emblem">${p.emblem}</div>
+      <h3>${p.name}</h3>
+      <div class="laqab">${p.laqab}</div>
+      <div class="tribe">🏕️ ${p.tribe}</div>
+    </article>
+  `).join('');
+
+  grid.querySelectorAll('.poet-card').forEach(card => {
+    card.addEventListener('click', () => openPoet(parseInt(card.dataset.index, 10)));
+    card.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openPoet(parseInt(card.dataset.index, 10));
+      }
+    });
+  });
+}
+
+/* =====================================================================
+   8) صفحة الشاعر
+   ===================================================================== */
+let currentPoet = 0;
+let poemFontSize = 26;
+
+function openPoet(index){
+  currentPoet = index;
+  const p = POETS[index];
+
+  const versesHtml = p.verses.map((v, i) => `
+    <div class="verse">
+      <span class="num">${i + 1}</span>
+      <div class="sadr">${annotate(v[0], p.vocab)}</div>
+      <div class="ajz">${annotate(v[1], p.vocab)}</div>
+    </div>
+  `).join('');
+
+  const fav = isFav(p.id);
+
+  document.getElementById('view-poet').innerHTML = `
+    <div class="poet-wrap">
+      <div class="back-row" style="margin:1.2rem 0 .6rem">
+        <button class="btn ghost" onclick="goHome()">← العودة إلى الديوان</button>
+      </div>
+
+      <div class="poet-head">
+        <h1>${p.name}</h1>
+        <p class="poet-full">${p.full}</p>
+        <div class="poet-meta">
+          <span>🏷️ اللقب: ${p.laqab}</span>
+          <span>🏕️ القبيلة: ${p.tribe}</span>
+          <span>🕰️ العصر: ${p.era}</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">التعريف بالشاعر</h2>
+        <p>${p.bio}</p>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">تحليل المعلّقة</h2>
+        <p>${p.analysis}</p>
+      </div>
+
+      <div class="toolbar">
+        <button class="tool-btn" id="btnZoomIn" title="تكبير الخط">➕ تكبير</button>
+        <button class="tool-btn" id="btnZoomOut" title="تصغير الخط">➖ تصغير</button>
+        <span class="tool-sep"></span>
+        <button class="tool-btn" id="btnCopy" title="نسخ القصيدة">📋 نسخ المعلّقة</button>
+        <button class="tool-btn ${fav ? 'active' : ''}" id="btnFav" title="إضافة إلى المفضلة">⭐ المفضلة</button>
+        <button class="tool-btn" id="btnPrint" title="طباعة القصيدة">🖨️ طباعة</button>
+      </div>
+
+      <div class="verses" id="versesBox" style="font-size:${poemFontSize}px">
+        ${versesHtml}
+      </div>
+
+      <div class="poet-nav">
+        <button class="btn ghost" id="btnPrev">➡️ الشاعر السابق</button>
+        <button class="btn" id="btnNext">الشاعر التالي ⬅️</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('view-home').classList.add('hidden');
+  document.getElementById('view-poet').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  /* الأحداث */
+  document.getElementById('btnZoomIn').addEventListener('click', () => {
+    poemFontSize = Math.min(poemFontSize + 2, 46);
+    document.getElementById('versesBox').style.fontSize = poemFontSize + 'px';
+  });
+  document.getElementById('btnZoomOut').addEventListener('click', () => {
+    poemFontSize = Math.max(poemFontSize - 2, 16);
+    document.getElementById('versesBox').style.fontSize = poemFontSize + 'px';
+  });
+  document.getElementById('btnCopy').addEventListener('click', copyPoem);
+  document.getElementById('btnPrint').addEventListener('click', () => window.print());
+  document.getElementById('btnFav').addEventListener('click', function(){
+    const nowFav = toggleFav(p.id);
+    this.classList.toggle('active', nowFav);
+    renderPoetsGrid();
+    toast(nowFav ? 'أُضيف الشاعر إلى المفضلة ⭐' : 'أُزيل الشاعر من المفضلة');
+  });
+  document.getElementById('btnPrev').addEventListener('click', () => {
+    openPoet((currentPoet - 1 + POETS.length) % POETS.length);
+  });
+  document.getElementById('btnNext').addEventListener('click', () => {
+    openPoet((currentPoet + 1) % POETS.length);
+  });
+}
+
+function copyPoem(){
+  const p = POETS[currentPoet];
+  let txt = p.name + ' — ' + p.laqab + '\n' + p.full + '\n\n';
+  p.verses.forEach((v, i) => {
+    txt += (i + 1) + '. ' + v[0] + '   ...   ' + v[1] + '\n';
+  });
+  txt += '\n— من تطبيق «ديوان المعلّقات | ذاكرة العرب»';
+
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt)
+      .then(() => toast('تم نسخ المعلّقة بنجاح ✓'))
+      .catch(() => fallbackCopy(txt));
+  }else{
+    fallbackCopy(txt);
+  }
+}
+function fallbackCopy(txt){
+  const ta = document.createElement('textarea');
+  ta.value = txt;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try{ document.execCommand('copy'); toast('تم نسخ المعلّقة بنجاح ✓'); }
+  catch(e){ toast('تعذّر النسخ في هذا المتصفح'); }
+  document.body.removeChild(ta);
+}
+
+function goHome(){
+  document.getElementById('view-poet').classList.add('hidden');
+  document.getElementById('view-home').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* التنقل السريع من الترويسة */
+function gotoSection(id){
+  const homeVisible = !document.getElementById('view-home').classList.contains('hidden');
+  if(!homeVisible){
+    document.getElementById('view-poet').classList.add('hidden');
+    document.getElementById('view-home').classList.remove('hidden');
+  }
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if(el){
+      const y = el.getBoundingClientRect().top + window.pageYOffset - 90;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, 60);
+}
+
+/* =====================================================================
+   9) تلميح المفردات
+   ===================================================================== */
+const tipEl = document.getElementById('vocabTip');
+
+function showTip(el){
+  const text = el.getAttribute('data-exp');
+  if(!text) return;
+  tipEl.textContent = text;
+  tipEl.classList.add('show');
+
+  const r = el.getBoundingClientRect();
+  const tipW = tipEl.offsetWidth;
+  const tipH = tipEl.offsetHeight;
+
+  let left = r.left + r.width / 2 - tipW / 2;
+  left = Math.max(10, Math.min(left, window.innerWidth - tipW - 10));
+
+  let top = r.top - tipH - 12;
+  if(top < 70) top = r.bottom + 12;
+
+  tipEl.style.left = left + 'px';
+  tipEl.style.top = top + 'px';
+}
+function hideTip(){
+  tipEl.classList.remove('show');
+}
+
+document.addEventListener('mouseover', e => {
+  const el = e.target.closest ? e.target.closest('.vocab') : null;
+  if(el) showTip(el);
+});
+document.addEventListener('mouseout', e => {
+  const el = e.target.closest ? e.target.closest('.vocab') : null;
+  if(el) hideTip();
+});
+document.addEventListener('click', e => {
+  const el = e.target.closest ? e.target.closest('.vocab') : null;
+  if(el){
+    e.stopPropagation();
+    showTip(el);
+  }else{
+    hideTip();
+  }
+});
+window.addEventListener('scroll', hideTip, { passive:true });
+window.addEventListener('resize', hideTip);
+
+/* =====================================================================
+   10) قسم «هل تعلم؟»
+   ===================================================================== */
+let factIndex = 0;
+
+function renderFact(){
+  const box = document.getElementById('factText');
+  box.style.animation = 'none';
+  void box.offsetWidth;
+  box.style.animation = '';
+  box.textContent = FACTS[factIndex];
+  document.getElementById('factCounter').textContent =
+      (factIndex + 1) + ' / ' + FACTS.length;
+}
+
+document.getElementById('nextFactBtn').addEventListener('click', () => {
+  factIndex = (factIndex + 1) % FACTS.length;
+  renderFact();
+});
+
+/* =====================================================================
+   11) الاختبار الأدبي
+   ===================================================================== */
+let activeLevel = 1;
+const quizState = { 1:{}, 2:{}, 3:{} };
+
+function renderQuizTabs(){
+  const tabs = document.getElementById('quizTabs');
+  tabs.innerHTML = Object.keys(QUIZ).map(lv => `
+    <button class="tab ${parseInt(lv,10) === activeLevel ? 'active' : ''}"
+            data-level="${lv}">${QUIZ[lv].label}</button>
+  `).join('');
+  tabs.querySelectorAll('.tab').forEach(t => {
+    t.addEventListener('click', () => {
+      activeLevel = parseInt(t.dataset.level, 10);
+      renderQuizTabs();
+      renderQuiz();
+    });
+  });
+}
+
+function renderQuiz(){
+  const data = QUIZ[activeLevel];
+  const state = quizState[activeLevel];
+  const body = document.getElementById('quizBody');
+
+  body.innerHTML = data.questions.map((q, qi) => {
+    const chosen = state[qi];
+    const answered = chosen !== undefined;
+
+    const opts = q.options.map((op, oi) => {
+      let cls = 'opt';
+      let marker = (oi + 1) + '';
+      if(answered){
+        cls += ' locked';
+        if(oi === q.answer){ cls += ' correct'; marker = '✓'; }
+        else if(oi === chosen){ cls += ' wrong'; marker = '✕'; }
+      }
+      return `<button class="${cls}" data-q="${qi}" data-o="${oi}">
+                <span class="marker">${marker}</span>
+                <span>${escapeHtml(op)}</span>
+              </button>`;
+    }).join('');
+
+    return `
+      <div class="q-card">
+        <div class="q-text">
+          <span class="q-index">${qi + 1}</span>
+          <span>${escapeHtml(q.q)}</span>
+        </div>
+        <div class="options">${opts}</div>
+        ${answered ? `<div class="explain">💡 <b>التوضيح:</b> ${escapeHtml(q.exp)}</div>` : ''}
+      </div>
+    `;
+  }).join('');
+
+  body.querySelectorAll('.opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const qi = parseInt(btn.dataset.q, 10);
+      const oi = parseInt(btn.dataset.o, 10);
+      if(quizState[activeLevel][qi] !== undefined) return;
+      quizState[activeLevel][qi] = oi;
+      renderQuiz();
+    });
+  });
+
+  renderScore();
+}
+
+function renderScore(){
+  const data = QUIZ[activeLevel];
+  const state = quizState[activeLevel];
+  const total = data.questions.length;
+  let answered = 0, correct = 0;
+
+  data.questions.forEach((q, i) => {
+    if(state[i] !== undefined){
+      answered++;
+      if(state[i] === q.answer) correct++;
+    }
+  });
+
+  const bar = document.getElementById('scoreBar');
+  let title = '';
+
+  if(answered === 0){
+    bar.innerHTML = `<p style="color:var(--muted);font-size:.9rem">
+      أجب عن الأسئلة لتحصل على نتيجتك في <b>${data.label}</b> — ${data.desc}</p>`;
+    return;
+  }
+
+  const pct = Math.round((correct / total) * 100);
+  if(pct >= 90)      title = '🏅 علّامة المعلّقات';
+  else if(pct >= 70) title = '📜 أديبٌ ناشئ';
+  else if(pct >= 50) title = '📖 طالبٌ مجتهد';
+  else               title = '🌱 مبتدئٌ في دروب الشعر';
+
+  const done = answered === total;
+
+  bar.innerHTML = `
+    <div class="score-num">${correct} / ${total}</div>
+    <div style="color:var(--muted);font-size:.85rem;margin-top:.2rem">
+      أجبت عن ${answered} من ${total} سؤالاً — نسبة الإجابات الصحيحة ${pct}%
+    </div>
+    ${done ? `<div class="score-title">${title}</div>` : ''}
+    <div style="margin-top:1rem">
+      <button class="btn ghost small" id="resetQuiz">إعادة الاختبار ↺</button>
+    </div>
+  `;
+
+  const rb = document.getElementById('resetQuiz');
+  if(rb){
+    rb.addEventListener('click', () => {
+      quizState[activeLevel] = {};
+      renderQuiz();
+      toast('تمت إعادة تعيين الاختبار');
+    });
+  }
+}
+
+/* =====================================================================
+   12) الإقلاع
+   ===================================================================== */
+(function init(){
+  /* الوضع */
+  const saved = localStorage.getItem(LS_THEME);
+  applyTheme(saved === 'dark' ? 'dark' : 'light');
+
+  /* الشبكة */
+  renderPoetsGrid();
+
+  /* هل تعلم */
+  renderFact();
+
+  /* الاختبار */
+  renderQuizTabs();
+  renderQuiz();
+})();
+</script>
+</body>
+</html>
